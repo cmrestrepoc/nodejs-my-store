@@ -3,7 +3,7 @@ const faker = require('faker')
 
 const router = express.Router()
 
-router.get('/products', (req, res) => {
+router.get('/', (req, res) => {
   const products = []
   const { size } = req.query
   const limit = size || 10
@@ -18,11 +18,11 @@ router.get('/products', (req, res) => {
 })
 
 /* This endpoint needs to be before the dynamic one */
-router.get('/products/filter', (req, res) => {
+router.get('/filter', (req, res) => {
   res.json('I am a filter')
 })
 
-router.get('/products/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   const {id} = req.params
   res.json({
     id,
@@ -30,3 +30,13 @@ router.get('/products/:id', (req, res) => {
     price: 2000
   })
 })
+
+router.post('/', (req, res) => {
+  const body = req.body
+  res.json({
+    message: 'created',
+    data: body
+  })
+})
+
+module.exports = router

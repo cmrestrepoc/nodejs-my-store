@@ -2,7 +2,7 @@ const express = require('express')
 
 const router = express.Router()
 
-router.get('/users/', (req, res) => {
+router.get('/', (req, res) => {
   const {limit, offset} = req.query
   if(limit && offset) {
     res.json({
@@ -13,3 +13,5 @@ router.get('/users/', (req, res) => {
     res.send('There is no params')
   }
 })
+
+module.exports = router
