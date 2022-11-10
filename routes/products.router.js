@@ -34,10 +34,16 @@ router.put('/:id', (req, res) => {
 })
 
 router.patch('/:id', (req, res) => {
-  const { id } = req.params
-  const body = req.body
-  const product = service.update(id, body)
-  res.json(product)
+  try {
+    const { id } = req.params
+    const body = req.body
+    const product = service.update(id, body)
+    res.json(product)
+  } catch (error) {
+    res.status(404).json({
+      message: error.message
+    })
+  }
 })
 
 router.delete('/:id', (req, res) => {
